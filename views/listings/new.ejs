@@ -1,0 +1,76 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+  <!-- New form for Listing -->
+
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h3>Create a New Listing</h3>
+      <br><br>
+      <form method="POST" novalidate action="/listings" class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input required type="text" placeholder="Add a catchy title" class="form-control" name="listing[title]">
+          <div class="valid-feedback">Title Looks good!</div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea required type="text" name="listing[description]" placeholder="" class="form-control"></textarea>
+          <div class="invalid-feedback">
+            Please enter short discription
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload Listing Image</label>
+          <input required type="file" name="listing[image]" class="form-control" />
+        </div>
+
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input required type="String" name="listing[price]" placeholder="Enter price" class="form-control" />
+            <div class="invalid-feedback">
+              Price should be valid
+            </div>
+          </div>
+          <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input required type="text" name="listing[country]" placeholder="India" class="form-control" />
+            <div class="invalid-feedback">
+              Country should be valid
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input required type="text" name="listing[location]" placeholder="Lucknow , Siddhart Nagar"
+            class="form-control" />
+          <div class="invalid-feedback">
+            Location should be valid
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+
+          <select name="listing[category]" class="form-control" required>
+            <option value="">Select Category</option>
+            <option value="Trending">Trending</option>
+            <option value="Rooms">Rooms</option>
+            <option value="Iconic cities">Iconic cities</option>
+            <option value="Castles">Castles</option>
+            <option value="Mountain">Mountain</option>
+            <option value="Amazing pools">Amazing pools</option>
+            <option value="Camping">Camping</option>
+            <option value="Farms">Farms</option>
+            <option value="Arctic">Arctic</option>
+            <option value="Domes">Domes</option>
+            <option value="Boats">Boats</option>
+          </select>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary add-btn">Add</button>
+        <br><br>
+      </form>
+    </div>
+  </div>

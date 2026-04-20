@@ -1,0 +1,201 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<!-- dashboard -->
+
+<style>
+
+</style>
+ 
+  <div class="container mt-5">
+
+    <% if (listings.length> 0) { %>
+
+      <!-- owner dashboard -->
+
+      <h2 class="mb-4 text-center">Owner Dashboard</h2>
+      <div class="row text-center">
+
+        
+        <div class="col-md-4 mb-4">
+          <div class="card shadow p-4 dashboard-card ">
+            <i class=" fa-solid fa-house fa-2x mb-3 text-primary d-block mx-auto"></i>
+            <h5>Total Listings</h5>
+            <h2>
+              <%= totalListings %>
+            </h2>
+          </div>
+        </div>
+
+      
+        <div class="col-md-4 mb-4">
+          <div class="card shadow p-4 dashboard-card">
+            <i class="fa-solid fa-calendar-check fa-2x mb-3 text-success d-block mx-auto"></i>
+            <h5>Total Bookings</h5>
+            <h2>
+              <%= totalBookings %>
+            </h2>
+          </div>
+        </div>
+
+        
+        <div class="col-md-4 mb-4">
+          <div class="card shadow p-4 dashboard-card">
+            <i class="fa-solid fa-wallet fa-2x mb-3 text-danger d-block mx-auto"></i>
+            <h5>Total Earnings</h5>
+            <h2>₹ <%= totalEarnings %>
+            </h2>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <!-- user booking -->
+      <div class="container mt-4">
+
+        <% if (bookings.length> 0) { %>
+          <h2 class="mb-4">User Bookings</h2>
+
+          <% } %>
+
+            <% bookings.forEach(b=> { %>
+
+              <div class="booking-card">
+
+                
+                <div class="booking-img">
+                  <img src="<%= b.listing?.image?.url || '/default.jpg' %>" />
+                </div>
+
+                <div class="booking-content">
+
+                  <p><strong>User ID:</strong>
+                    <%= b.user._id %>
+                  </p>
+
+                  <p><i class="fa-solid fa-user"></i>
+                    <%= b.user.username %>
+                  </p>
+                  <p><i class="fa-solid fa-envelope"></i>
+                    <%= b.user.email %>
+                  </p>
+
+                  <hr>
+
+                  <p>
+                    <strong>Check-in:</strong>
+                    <%= new Date(b.checkIn).toDateString() %>
+                      →
+                      <%= new Date(b.checkOut).toDateString() %>
+                  </p>
+
+                
+                  <% if(b.status==="paid" ) { %>
+                    <span class="badge paid">PAID</span>
+                    <% } else if(b.status==="cancelled_by_owner" ) { %>
+                      <span class="badge owner-cancel">Cancelled by Owner</span>
+                      <% } else { %>
+                        <span class="badge cancelled">Cancelled</span>
+                        <% } %>
+
+                          <span class="amount">₹<%= b.amount %></span>
+
+                </div>
+
+        
+                <div class="booking-action">
+
+                  <% if(b.status==="paid" ) { %>
+                    <form action="/bookings/<%= b._id %>/cancelByOwner" method="POST">
+                      <button class="btn-remove">Remove Booking</button>
+                    </form>
+                    <% } else { %>
+                      <button class="btn-disabled" disabled>Not Allowed</button>
+                      <% } %>
+
+                </div>
+
+              </div>
+
+              <% }) %>
+
+      </div>
+
+
+
+      <!-- your listing -->
+
+      <h3 class="mb-4">Your Listings</h3>
+
+      <% listings.forEach(listing=> { %>
+
+        <div class="card mb-3 p-3 shadow-sm listing-card">
+          <div class="row align-items-center">
+
+           
+            <div class="col-md-3">
+              <img src="<%= listing.image.url %>" class="listing-img">
+            </div>
+
+       
+            <div class="col-md-4">
+              <h5>
+                <%= listing.title %>
+              </h5>
+              <p class="text-muted mb-1">
+                <%= listing.location %>
+              </p>
+
+             
+            </div>
+
+        
+            <div class="col-md-2 text-center">
+              <div class="info-box">
+                <i class="fa-solid fa-calendar-check text-primary"></i>
+                <p class="mb-0"><strong>
+                    <%= listing.bookingCount || 0 %>
+                  </strong></p>
+                <small>Bookings</small>
+              </div>
+            </div>
+
+            <div class="col-md-2 text-center">
+              <div class="info-box">
+                <i class="fa-solid fa-wallet text-success"></i>
+                <p class="mb-0"><strong>
+                    ₹ <%= listing.earnings || 0 %>
+                  </strong></p>
+                <small>Earnings</small>
+              </div>
+            </div>
+
+
+            <div class="col-md-1 text-end">
+              <a href="/listings/<%= listing._id %>" class="btn btn-primary btn-sm">
+                Show
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <% }) %>
+
+          <% } else { %>
+
+    
+            <div class="text-center mt-5">
+              <h3>No Listings Found! </h3>
+              <p>You haven’t created any listing yet.</p>
+
+              <a href="/listings/new" class="btn btn-danger mt-3">
+                Create Listing
+              </a>
+            </div>
+
+            <% } %>
+
+  </div>

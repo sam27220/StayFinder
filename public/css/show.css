@@ -1,0 +1,69 @@
+.full-body {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.price {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.grid {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  flex: 1;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.cell:first-child {
+  border-right: 1px solid #ddd;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.value {
+  font-size: 14px;
+}
+
+.btn-card {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, #ff385c, #e31c5f);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.note {
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+  margin: 10px 0 16px;
+}

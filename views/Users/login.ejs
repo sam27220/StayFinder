@@ -1,0 +1,78 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<style>
+    /* FULL CENTER */
+.login-container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARD */
+.login-card {
+  width: 450px;
+  padding: 30px;
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* BUTTON */
+.btn-login {
+  background: #ff385c;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.btn-login:hover {
+  background: #e31c5f;
+}
+
+/* SIGNUP LINK */
+.signup-link {
+  color: #ff385c;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+</style>
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h2 class="text-center mb-4">Login</h2>
+
+    <form method="POST" action="/login">
+
+      <!-- Username -->
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+      </div>
+
+      <!-- Button -->
+      <button class="btn btn-login w-100">Login</button>
+
+    </form>
+
+    <!--  SIGNUP LINK -->
+    <p class="text-center mt-3">
+      Don't have an account?
+      <a href="/signup" class="signup-link">Sign up</a>
+    </p>
+
+  </div>
+
+</div>
